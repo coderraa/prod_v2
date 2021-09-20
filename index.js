@@ -208,7 +208,7 @@ app.post('/', (req, res) => {
 
         
         else if(req.body.queryResult.intent.displayName=='Mobile_number'){
-          intialcooler(req.body.queryResult.parameters['Customer_id']).then(function(resp) {
+          intialcooler(req.body.queryResult.parameters['customer_id']).then(function(resp) {
             console.log(resp)//resp is reponse from get api, 
             //res.send will send this to dialogflow
             res.send({
@@ -347,7 +347,7 @@ app.post('/', (req, res) => {
         })}
   
   
-    else if(req.body.queryResult.parameters.trigger_entity=='SOA'){
+    else if(req.body.queryResult.intent.displayName=='Current Balance'){
       soa(req.body.queryResult.parameters['Customer_id']).then(function(resp) {
         console.log(resp)//resp is reponse from get api, 
         //res.send will send this to dialogflow
