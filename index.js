@@ -330,6 +330,21 @@ app.post('/', (req, res) => {
         })
       })}
 
+      else if(req.body.queryResult.intent.displayName=='Others mail triggers'){
+        othercomplain(req.body.queryResult.parameters['Customer_id'],req.body.queryResult.queryText).then(function(resp) {
+          console.log(resp)//resp is reponse from get api, 
+          //res.send will send this to dialogflow
+          res.send({
+            "fulfillmentMessages": [
+              {
+                "text": {
+                  "text": [JSON.stringify(resp)+" Your Other Complain query: --"+req.body.queryResult.queryText+"-- has been registered. We will Contact you soon."]
+                }
+              }
+            ]
+          })
+        })}
+
 
       else if(req.body.queryResult.intent.displayName=='error_verify'){
         verify(req.body.queryResult.parameters['Customer_id','Equipment_id','Equipment_id']).then(function(resp) {
